@@ -1,0 +1,3 @@
+# https://github.com/letta-ai/letta-code
+npm install -g @letta-ai/letta-code
+letta update
