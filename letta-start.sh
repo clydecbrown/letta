@@ -1,0 +1,35 @@
+#!/bin/bash
+# Start letta. Optionally create and configure a new project/agent.
+
+set -e
+
+MODEL="anthropic/claude-haiku-4-5-20251001"
+
+if [ "$HOME" = "$(pwd)" ]; then
+	>&2 echo "Won't start in the home directory"
+	exit 1
+fi
+
+if [ -d .letta ]; then
+	/usr/bin/env letta "$@"
+	exit 0
+fi
+
+read -p "Start a new Letta project? (y/N) " -n 1 -r
+echo
+if [[ $REPLY =~ ^[Yy]$ ]]; then
+	/usr/bin/env letta --model $MODEL "$@"
+	# todo? --sleeptime
+	exit 0
+fi
+
+# todo
+# 	python API client to create/configure agent
+#       set name to `pwd`
+# 		https://docs.letta.com/guides/templates/overview/
+# 		context window = 99000
+# 		how to link "human" block? https://app.letta.com/projects/default-project/blocks
+# 			https://discord.com/channels/1161736243340640419/1452177709672304773
+
+>&2 echo "no project created"
+exit 1
