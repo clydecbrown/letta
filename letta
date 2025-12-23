@@ -3,7 +3,11 @@
 
 set -e
 
-MODEL="anthropic/claude-haiku-4-5-20251001"
+source ~/.letta/config.sh
+if [ -z "$DEFAULT_MODEL" ]; then
+	>&2 echo "Error: DEFAULT_MODEL is not set"
+	exit 1
+fi
 
 if [ "$HOME" = "$(pwd)" ]; then
 	>&2 echo "Won't start in the home directory"
@@ -18,7 +22,7 @@ fi
 read -p "Start a new Letta project? (y/N) " -n 1 -r
 echo
 if [[ $REPLY =~ ^[Yy]$ ]]; then
-	/opt/homebrew/bin/letta --model $MODEL "$@"
+	/opt/homebrew/bin/letta --model "$DEFAULT_MODEL" "$@"
 	# todo? --sleeptime
 	exit 0
 fi
