@@ -11,14 +11,14 @@ if [ "$HOME" = "$(pwd)" ]; then
 fi
 
 if [ -d .letta ]; then
-	/usr/bin/env letta "$@"
+	/opt/homebrew/bin/letta "$@"
 	exit 0
 fi
 
 read -p "Start a new Letta project? (y/N) " -n 1 -r
 echo
 if [[ $REPLY =~ ^[Yy]$ ]]; then
-	/usr/bin/env letta --model $MODEL "$@"
+	/opt/homebrew/bin/letta --model $MODEL "$@"
 	# todo? --sleeptime
 	exit 0
 fi
