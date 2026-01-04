@@ -1,3 +1,4 @@
 # https://github.com/letta-ai/letta-code
 npm install -g @letta-ai/letta-code
-letta update
+# letta update
+npm update -g @letta-ai/letta-code

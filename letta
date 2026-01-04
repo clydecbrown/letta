@@ -3,9 +3,10 @@
 
 set -e
 
-source ~/.letta/config.sh
-if [ -z "$DEFAULT_MODEL" ]; then
-	>&2 echo "Error: DEFAULT_MODEL is not set"
+source ~/.env
+
+if [ -z "$LETTA_DEFAULT_MODEL" ]; then
+	>&2 echo "Error: LETTA_DEFAULT_MODEL is not set"
 	exit 1
 fi
 
@@ -22,7 +23,7 @@ fi
 read -p "Start a new Letta project? (y/N) " -n 1 -r
 echo
 if [[ $REPLY =~ ^[Yy]$ ]]; then
-	/opt/homebrew/bin/letta --model "$DEFAULT_MODEL" "$@"
+	/opt/homebrew/bin/letta --model "$LETTA_DEFAULT_MODEL" "$@"
 	# todo? --sleeptime
 	exit 0
 fi
