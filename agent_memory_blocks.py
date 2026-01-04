@@ -230,7 +230,7 @@ def create_visualization(
         "physics": {
             "enabled": true,
             "barnesHut": {
-                "gravitationalConstant": -5000,
+                "gravitationalConstant": -20000,
                 "centralGravity": 0.3,
                 "springLength": 200,
                 "springConstant": 0.04,
@@ -584,4 +584,5 @@ def main():
 
 if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO)
+    logging.getLogger('httpx').setLevel(logging.WARNING)
     main()
